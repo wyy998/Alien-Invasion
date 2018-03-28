@@ -6,7 +6,7 @@ class Ship():
         self.screen = screen
         self.ai_settings = ai_settings
         # 加载图片
-        self.image = pygame.image.load('C:/Users/1/Pictures/cat.bmp')
+        self.image = pygame.image.load(ai_settings.path + 'ship.bmp')
         # 获取图像外接矩形
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()

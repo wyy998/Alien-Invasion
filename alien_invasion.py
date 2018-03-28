@@ -5,6 +5,7 @@ from settings import Settings
 from ship import Ship
 import game_functions as gf
 from pygame.sprite import Group
+from alien import Alien
 
 
 class Game():
@@ -17,9 +18,10 @@ class Game():
                                                ai_settings.screen_height))
         self.ship = Ship(self.screen, self.settings)
         self.bullets = Group()
-        pygame.display.set_caption('Alien Invasion')
+        pygame.display.set_caption(ai_settings.caption)
 
     def run_game(self):
+        self.alien = Alien(self.settings, self.screen)
         # 开始游戏主循环
         while True:
             # 监视键盘和鼠标事件
@@ -29,7 +31,7 @@ class Game():
             gf.update_bullets(self.bullets)
             # 让最近绘制的屏幕可见
             gf.update_screen(self.settings, self.screen, self.ship,
-                             self.bullets)
+                             self.bullets, self.alien)
 
 
 if __name__ == '__main__':

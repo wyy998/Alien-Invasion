@@ -14,10 +14,13 @@ def check_events(ai_settings, screen, ship, bullets):
                 ship.moving_right = True
             elif event.key == pygame.K_LEFT:
                 ship.moving_left = True
+            # 限制屏幕上子弹数量
             elif event.key == pygame.K_SPACE and len(
                     bullets) < ai_settings.bullet_allowed:
                 new_bullet = Bullet(ai_settings, screen, ship)
                 bullets.add(new_bullet)
+            elif event.key == pygame.K_q:
+                sys.exit()
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT:
                 ship.moving_right = False
@@ -28,11 +31,12 @@ def check_events(ai_settings, screen, ship, bullets):
             #     bullets.add(new_bullet)
 
 
-def update_screen(ai_settings, screen, ship, bullets):
+def update_screen(ai_settings, screen, ship, bullets, alien):
     screen.fill(ai_settings.bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
+    alien.blitme()
     pygame.display.flip()
 
 

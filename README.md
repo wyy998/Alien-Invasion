@@ -2,7 +2,7 @@
 
 > 源自《Python从入门到精通》
 
-![cat](http://d.lanrentuku.com/down/png/1602/tiantiansifangmao/tiantiansifangmao-01.png)
+![cat](http://d.lanrentuku.com/down/png/1602/tiantiansifangmao/tiantiansifangmao-17.png)
 
 + 主函数入口：alien_invasion.py
 
