@@ -1,11 +1,12 @@
 # import sys
 
 import pygame
+from pygame.sprite import Group
+
+import game_functions as gf
+# from alien import Alien
 from settings import Settings
 from ship import Ship
-import game_functions as gf
-from pygame.sprite import Group
-from alien import Alien
 
 
 class Game():
@@ -14,24 +15,27 @@ class Game():
         pygame.init()
         # 导入设置
         self.settings = ai_settings
+        # 设置屏幕
         self.screen = pygame.display.set_mode((ai_settings.screen_width,
                                                ai_settings.screen_height))
+        pygame.display.set_caption(ai_settings.caption)
+        # 创建飞船，外星人， 子弹群组
         self.ship = Ship(self.screen, self.settings)
         self.bullets = Group()
-        pygame.display.set_caption(ai_settings.caption)
+        self.aliens = Group()
+        gf.creat_fleet(ai_settings, self.screen, self.aliens)
 
     def run_game(self):
-        self.alien = Alien(self.settings, self.screen)
         # 开始游戏主循环
         while True:
             # 监视键盘和鼠标事件
             gf.check_events(self.settings, self.screen, self.ship,
                             self.bullets)
+            # 让最近绘制的屏幕可见
             self.ship.update()
             gf.update_bullets(self.bullets)
-            # 让最近绘制的屏幕可见
             gf.update_screen(self.settings, self.screen, self.ship,
-                             self.bullets, self.alien)
+                             self.bullets, self.aliens)
 
 
 if __name__ == '__main__':
